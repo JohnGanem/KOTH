@@ -2,7 +2,7 @@
   "name": "KOTH",
   "version": "0.0.1",
   "private": true,
-  "scripts": {
+  "scripts": { 
     "start": "node node_modules/nodemon/bin/nodemon.js ./bin/www"
   },
   "dependencies": {
