@@ -3,15 +3,11 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', {page:'Home', menuId:'home'});
+  res.render('index', {page:'Accueil', menuId:'accueil'});
 });
 
-router.get('/about', function(req, res, next) {
-  res.render('about', {page:'About Us', menuId:'about'});
-});
-
-router.get('/contact', function(req, res, next) {
-  res.render('contact', {page:'Contact Us', menuId:'contact'});
+router.get('/combat', function(req, res, next) {
+  res.render('combat', {page:'Combat Live', menuId:'combat'});
 });
 
 module.exports = router;
