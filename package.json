@@ -6,13 +6,15 @@
     "start": "node node_modules/nodemon/bin/nodemon.js ./bin/www"
   },
   "dependencies": {
-    "body-parser": "~1.17.1",
+    "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
-    "debug": "~2.6.3",
-    "ejs": "2.5.7",
-    "express": "~4.15.2",
-    "morgan": "~1.8.1",
+    "debug": "^4.1.1",
+    "ejs": "2.6.1",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
     "nodemon": "^1.17.4",
-    "serve-favicon": "~2.4.2"
+    "serve-favicon": "^2.5.0",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0"
   }
 }

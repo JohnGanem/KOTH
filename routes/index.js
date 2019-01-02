@@ -10,4 +10,8 @@ router.get('/combat', function(req, res, next) {
   res.render('combat', {page:'Combat Live', menuId:'combat'});
 });
 
+router.get('/help', function(req, res, next) {
+  res.render('w3school');
+});
+
 module.exports = router;
