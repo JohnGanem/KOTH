@@ -16,7 +16,8 @@ app.use(express.static(path.join(__dirname, 'public'))); // Pour l'utilisation d
 app.use(express.static(path.join(__dirname, 'node_module/socket.io-client'))); // Pour socket.io
 app.use(logger('dev')); // Logger
 app.use(logger('common', {stream: fs.createWriteStream('./access.log', {flags: 'a'})}));
-/**
+
+/** 
  * Routes
  */
 var index = require('./routes/index');
@@ -24,6 +25,9 @@ var play = require('./routes/play');
 app.use('/', index);
 app.use('/play', play);
 
+/**
+ * Error Handler
+ */
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found'); // Le texte de l'erreur
