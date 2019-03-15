@@ -27,6 +27,7 @@ var server = http.createServer(app);
 
 var io = require('./io').initialize(server);
 require('./viewers.js')(io);
+require('./players.js')(io);
 
 /**
  * Listen on provided port, on all network interfaces.

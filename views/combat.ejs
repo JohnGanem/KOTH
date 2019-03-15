@@ -28,7 +28,7 @@ $(document).ready(function () {
     });
 
     var socket = io('/viewer');
-    socket.on('fight_state', function (data) {
+    socket.on('game_status', function (data) {
         fight.state = data.state;
     });
     socket.on('new_connexion', function (data) {

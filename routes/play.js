@@ -16,30 +16,30 @@ router.all('/*', function (req, res, next) {
     next();
 });
 
-router.get('/register/:inputCode', function (req, res) {
+router.get('/register/:code', function (req, res) {
     io.of('/viewer').emit('new_player');
 
     if (game.nb_players < game.max_players) {
         if (req.id_player !== false) {
-            res.send("Already registered");
+            res.send('["Already registered"]');
             return;
         }
 
         // If ip doesn't exist
-        game.nb_players++;
-        game.players[game.nb_players] = {
-            ip: req.ip,
-            code: req.params.inputCode
-        };
-        res.send("Registration ok");
+        let id = helpers.insert_player(req.ip, req.params.code);
+        res.send('[' + id + ']');
     } else {
-        res.send("Game is full");
+        res.send('["Game is full"]');
     }
 });
 
 router.all('/*', function (req, res, next) {
     if (req.id_player === false) {
-        res.send("Not registered");
+        res.send('["Not registered"]');
+        return;
+    }
+    if (game.nb_players < game.max_players) {
+        res.send("Game has not started yet");
         return;
     }
     req.is_capturing = helpers.is_capturing(req.id_player);
@@ -48,11 +48,27 @@ router.all('/*', function (req, res, next) {
 
 router.get('/capture', function (req, res) {
     if (req.is_capturing) {
-        helpers.stop_capturing(req.id_player);
-        res.send("Stop capturing");
+        helpers.stop_capture(req.id_player);
+        res.send('["Stop capturing"]');
     } else {
-        game.capturing.push(req.id_player);
-        res.send("Capturing");
+        helpers.capture(req.id_player);
+        res.send('["Capturing"]');
+    }
+});
+
+router.get('/capture_status', function (req, res) {
+    res.send(helpers.capture_status());
+});
+
+router.get('/kill/:player/:code', function (req, res) {
+    if (req.params.player <= 0 || req.params.player > game.nb_players) {
+        res.send('["Player does not exist"]');
+    }
+    let try_kill = helpers.kill(req.params.player, req.params.code);
+    if (try_kill === true) {
+        res.send('["Player killed"]');
+    } else {
+        res.send('["Player not killed"]');
     }
 });
 

@@ -1,7 +1,8 @@
 module.exports = {
-    fight_state: "En attente de joueurs",
+    status: 1,
     nb_players: 0,
     max_players: 8,
     players: {},
-    capturing: []
+    capturing: [],
+    kill_duration: 30 //seconds
 };
